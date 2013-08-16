@@ -54,23 +54,23 @@ my_list=companies
 #Theoretically, we could import the stop list from the Web/NLTK's comprehsive stopword list
 # We haven't since the stop words in our context require a specific domain knowledge
 stop_list=['the','an','a','bank','of']
-arr = dict()
+arr_dict_list = dict()
 p=0
 for i in range(0, len(my_list)):
     p=0
     while str(my_list[i].split(' ')[p]) in stop_list :
         p=p+1
-    if str(my_list[i].split(' ')[p]) in arr:
+    if str(my_list[i].split(' ')[p]) in arr_dict_list:
         # append the new enity for the company to the existing array at this slot
-        arr[str(my_list[i].split(' ')[p])].append(str(my_list[i]))
+        arr_dict_list[str(my_list[i].split(' ')[p])].append(str(my_list[i]))
     else:
         # For the 1st value found for a particular key
-        arr[str(my_list[i].split(' ')[p])] = [str(my_list[i])]
+        arr_dict_list[str(my_list[i].split(' ')[p])] = [str(my_list[i])]
 
-#So the arr is a dict with keys and values as list of "similar" companies - as above        
-# back-of of the same arr object created above
+#So the arr_dict_list is a dict with keys and values as list of "similar" companies - as above        
+# back-of of the same arr_dict_list object created above
 
-arr_backup=arr 
+arr_backup=arr_dict_list 
 # Frequent item-set mining
 company=[]
 for key, value in arr_backup.items():
