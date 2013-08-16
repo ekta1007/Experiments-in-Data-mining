@@ -50,8 +50,10 @@ print companies
 Just keeping my_list & companies seperate, though they point to the same object in the memory - this ensures that debugging is clean & efficient"""
 
 my_list=companies
-stop_list=['the','an','a']
 
+#Theoretically, we could import the stop list from the Web/NLTK's comprehsive stopword list
+# We haven't since the stop words in our context require a specific domain knowledge
+stop_list=['the','an','a','bank','of']
 arr = dict()
 p=0
 for i in range(0, len(my_list)):
@@ -59,7 +61,7 @@ for i in range(0, len(my_list)):
     while str(my_list[i].split(' ')[p]) in stop_list :
         p=p+1
     if str(my_list[i].split(' ')[p]) in arr:
-        # append the new number to the existing array at this slot
+        # append the new enity for the company to the existing array at this slot
         arr[str(my_list[i].split(' ')[p])].append(str(my_list[i]))
     else:
         # For the 1st value found for a particular key
