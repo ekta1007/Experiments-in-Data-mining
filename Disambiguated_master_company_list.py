@@ -15,6 +15,10 @@ import sys
 import nltk
 import csv
 import re
+import string 
+"""string.punctuation
+'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'  """
+# will updtae this file to remove punctuations right away - its a better cleaning& matching exercise 
 
 CSV_FILE = 'C:/Users/Ekta.Grover/Desktop/Linkedin_data.csv'
 
