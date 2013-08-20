@@ -16,8 +16,6 @@ import nltk
 import csv
 import re
 import string 
-"""string.punctuation
-'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'  """
 # will updtae this file to remove punctuations right away - its a better cleaning& matching exercise 
 
 CSV_FILE = 'C:/Users/Ekta.Grover/Desktop/Linkedin_data.csv'
@@ -55,9 +53,15 @@ Just keeping my_list & companies seperate, though they point to the same object 
 
 my_list=companies
 
-#Theoretically, we could import the stop list from the Web/NLTK's comprehsive stopword list
+#Removing punctuation, string.punctuation  = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+for i in range(0,len(my_list)):
+	for c in string.punctuation:
+		my_list[i]=my_list[i].replace(c,"")
+
+
+#Theoretically, we could import the stop list from the Web/NLTK's comprehensive stop-word list
 # We haven't since the stop words in our context require a specific domain knowledge
-stop_list=['the','an','a','bank','of']
+stop_list=['the','an','a','bank','of','among', 'with']
 arr_dict_list = dict()
 p=0
 for i in range(0, len(my_list)):
@@ -65,10 +69,11 @@ for i in range(0, len(my_list)):
     while str(my_list[i].split(' ')[p]) in stop_list :
         p=p+1
     if str(my_list[i].split(' ')[p]) in arr_dict_list:
-        # append the new enity for the company to the existing array at this slot
+        # append the new entity to the existing dict at this key's slot
         arr_dict_list[str(my_list[i].split(' ')[p])].append(str(my_list[i]))
     else:
-        # For the 1st value found for a particular key
+        # For the 1st value found for a particular company, create the key, and store
+	    # the entire company name as the value
         arr_dict_list[str(my_list[i].split(' ')[p])] = [str(my_list[i])]
 
 #So the arr_dict_list is a dict with keys and values as list of "similar" companies - as above        
