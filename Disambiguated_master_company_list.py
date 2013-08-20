@@ -35,7 +35,9 @@ contacts = [row for row in csvReader]
 #Removing any empty company names in the input dataset
 companies = [c['Company'].strip() for c in contacts if c['Company'].strip() != '']
 
-#transforming for 24/7 & Walmart labs
+# The added improvement on punctuation will remove the need for this sub-section transformation- will remove "[" in 247 and '@' in walmart
+#Transforming for 24/7 & Walmart labs
+"""
 for j in range(0,len(companies)):
     if re.search('24', companies[j]) :
         companies[j]='[24]7,Inc'
@@ -47,7 +49,7 @@ for j in range(0,len(companies)):
         except UnicodeDecodeError:
             pass
 print companies
-
+"""
 """ Think data-structures - Creating a dictionary so that similar "values" go in same key, i.e VMware India, VMware inc, and VMware LLC are categorized under the same key in the dict. This comes as {"Vmware" : ['VMware India', 'VMware inc', 'VMware LLC']
 Just keeping my_list & companies seperate, though they point to the same object in the memory - this ensures that debugging is clean & efficient"""
 
